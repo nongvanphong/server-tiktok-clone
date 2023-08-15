@@ -1,4 +1,10 @@
-const { Commets, Users } = require("../../database/models/index");
+const { Op } = require("sequelize");
+const {
+  Commets,
+  Users,
+  Videos,
+  Sequelize,
+} = require("../../database/models/index");
 class CommentModel {
   async create(newData) {
     return Commets.create(newData);
@@ -43,6 +49,25 @@ class CommentModel {
     return Commets.destroy({
       where: { videoid: id },
       transaction,
+    });
+  }
+  async getnotyfi(id) {
+    return Users.findAll({
+      where: { id: id },
+      attributes: ["id"],
+      include: {
+        model: Videos,
+        on: {
+          userid: { [Op.eq]: Sequelize.col("Users.id") },
+        },
+        attributes: ["id"],
+        include: {
+          model: Commets,
+          on: {
+            videoid: { [Op.eq]: Sequelize.col("Videos.id") },
+          },
+        },
+      },
     });
   }
 }

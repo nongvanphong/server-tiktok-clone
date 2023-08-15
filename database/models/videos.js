@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Videos.belongsTo(models.Users, { foreignKey: "userid" });
       Videos.hasMany(models.Favourites, { foreignKey: "id" });
+      // Videos.belongsTo(models.Commets, { foreignKey: "videoid" });
     }
   }
   Videos.init(

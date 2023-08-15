@@ -3,7 +3,7 @@ const FavouriteModel = require("../models/favourite.model");
 exports.favouriteVideo = async (req, res) => {
   const id = req.user.id;
   const video_id = req.body.video_id;
-  console.log(video_id);
+
   const dataVideo = await videoRepo.getById(video_id);
 
   if (!dataVideo)

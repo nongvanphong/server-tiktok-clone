@@ -97,6 +97,7 @@ exports.all = async (req, res) => {
   const myid = req.query.myid;
 
   const _page = req.query.page;
+
   const _perPage = 5;
   let offset = (_page - 1) * _perPage;
   let limit = _perPage;

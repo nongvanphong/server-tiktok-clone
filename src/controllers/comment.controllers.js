@@ -130,3 +130,21 @@ exports.delete = async (req, res) => {
     });
   }
 };
+exports.notify = async (req, res) => {
+  try {
+    const id = req.query.id;
+
+    const result = await CommentModel.getnotyfi(id);
+
+    return res.status(200).json({
+      status: 200,
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+      status: 400,
+      msg: "get notyfi fail",
+    });
+  }
+};

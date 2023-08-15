@@ -36,5 +36,7 @@ router.group("/comments", (router) => {
   router.get("/all", commets.getAll);
   router.post("/delete", verify, commets.delete);
 });
-
+router.group("/notify", (router) => {
+  router.get("/all", commets.notify);
+});
 module.exports = router;
